@@ -474,7 +474,39 @@
 // console.log(Array.prototype)
 // console.log(Object.getPrototypeOf(arr))
 
-let n=10
-console.log(n.__proto__===Number.prototype)
-let b=true
-console.log(b.__proto__===Boolean.prototype)
+// let n=10
+// console.log(n.__proto__===Number.prototype)
+// let b=true
+// console.log(b.__proto__===Boolean.prototype)
+
+// function checkPassword(success,failed){
+//     let password = prompt('Password:',"")
+//     if(password=='Ramessh lal') success()
+//        else failed()
+// }
+// const user ={
+//     name:'Ramessh lal',
+//     loginSuccess:function(){
+//         console.log(`${this.name} loggedin successfully!!`)
+//     },
+//     loginFailed:function(){
+//         console.log(`${this.name} loggedin failed!!`)
+//     }
+// }
+// checkPassword(user.loginSuccess.bind(user),user.LoginFailed.bind(user))
+//----------------------------------------------------------------------------
+const user = {
+
+    name: "Ramessh lal",
+
+    greet: function () {
+        console.log(this.name);
+    }
+};
+
+function execute(callback) {
+    callback();
+}
+
+execute(user.greet);//
+execute(user.greet.bind(user));//Ramessh lal 
