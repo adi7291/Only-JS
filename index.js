@@ -378,7 +378,7 @@
 //     }
 //     console.log(data.greet())
 //     console.log(data.greet.call(this))
-    
+
 // })
 //-------------------------------------------------------------------------
 
@@ -495,18 +495,61 @@
 // }
 // checkPassword(user.loginSuccess.bind(user),user.LoginFailed.bind(user))
 //----------------------------------------------------------------------------
+// const user = {
+
+//     name: "Ramessh lal",
+
+//     greet: function () {
+//         console.log(this.name);
+//     }
+// };
+
+// function execute(callback) {
+//     callback();
+// }
+
+// execute(user.greet);//
+// execute(user.greet.bind(user));//Ramessh lal 
+
+// const user ={
+//     name:'Ramessh lal'
+// }
+// greet.call(user , 30 ,'katihar')
+
+// function greet(age,city){
+//     console.log(this.name,age,city)
+// }
+
+function display(city){
+    console.log('Hii',this.name,city);
+}
 const user = {
-
-    name: "Ramessh lal",
-
-    greet: function () {
-        console.log(this.name);
+    name:'Ramessh lal',
+    greet:function(){
+        console.log('Hello',this.name)
     }
-};
-
-function execute(callback) {
-    callback();
 }
 
-execute(user.greet);//
-execute(user.greet.bind(user));//Ramessh lal 
+user.greet()
+display.call(user,'katihar')
+Function.prototype.customCall=function(context,...args){
+    context = context || globalThis;
+    const funKey = Symbol('fn')
+    context[funKey]=this;
+    const result = context[funKey](...args)
+    delete context[funKey];
+    return result
+}
+display.customCall(user,'Katihar',854105)
+Function.prototype.customApply= function(context,args){
+    context = context || globalThis;
+    const funKey = Symbol('fn');
+    if(args !== undefined && !Array.isArray(args)){
+        throw new Error ('The argument you are passing is not array')
+    }
+    context[funKey]=this;
+    const result = args?context[funKey](...args):context[funKey]();
+    delete context[funKey];
+    return result;
+}
+display.customApply(user,['Ktihar'])
