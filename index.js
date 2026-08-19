@@ -520,8 +520,8 @@
 //     console.log(this.name,age,city)
 // }
 
-function display(city){
-    console.log('Hii',this.name,city);
+function display(city,pin){
+    console.log('Hii',this.name,city,pin);
 }
 const user = {
     name:'Ramessh lal',
@@ -529,27 +529,45 @@ const user = {
         console.log('Hello',this.name)
     }
 }
-
 user.greet()
-display.call(user,'katihar')
-Function.prototype.customCall=function(context,...args){
-    context = context || globalThis;
-    const funKey = Symbol('fn')
-    context[funKey]=this;
-    const result = context[funKey](...args)
-    delete context[funKey];
-    return result
-}
-display.customCall(user,'Katihar',854105)
-Function.prototype.customApply= function(context,args){
+//-----------------------------------------------------------------------------------------
+// display.call(user,'katihar')
+// Function.prototype.customCall=function(context,...args){
+//     context = context || globalThis;
+//     const funKey = Symbol('fn')
+//     context[funKey]=this;
+//     const result = context[funKey](...args)
+//     delete context[funKey];
+//     return result
+// }
+// display.customCall(user,'Katihar',854105)
+//------------------------------------------------------------------------------------------
+// Function.prototype.customApply= function(context,args){
+//     context = context || globalThis;
+//     const funKey = Symbol('fn');
+//     if(args !== undefined && !Array.isArray(args)){
+//         throw new Error ('The argument you are passing is not array')
+//     }
+//     context[funKey]=this;
+//     const result = args?context[funKey](...args):context[funKey]();
+//     delete context[funKey];
+//     return result;
+// }
+// display.customApply(user,['Ktihar'])
+//---------------------------------------------------------------------------------
+const newBind = display.bind(user);
+console.log('dsdsdsd',newBind('katihar'));
+
+Function.prototype.customBind=function (context,...agrs){
     context = context || globalThis;
     const funKey = Symbol('fn');
-    if(args !== undefined && !Array.isArray(args)){
-        throw new Error ('The argument you are passing is not array')
-    }
+
     context[funKey]=this;
-    const result = args?context[funKey](...args):context[funKey]();
-    delete context[funKey];
-    return result;
+    
+    return function(...newArgs){
+        context[funKey](...agrs,...newArgs)
+    }
 }
-display.customApply(user,['Ktihar'])
+const customdsplay =display.customBind(user,'katihar')
+console.log(customdsplay(854105))
+
