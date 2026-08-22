@@ -529,7 +529,7 @@ const user = {
         console.log('Hello',this.name)
     }
 }
-user.greet()
+// user.greet()
 //-----------------------------------------------------------------------------------------
 // display.call(user,'katihar')
 // Function.prototype.customCall=function(context,...args){
@@ -555,19 +555,95 @@ user.greet()
 // }
 // display.customApply(user,['Ktihar'])
 //---------------------------------------------------------------------------------
-const newBind = display.bind(user);
-console.log('dsdsdsd',newBind('katihar'));
+// const newBind = display.bind(user);
+// console.log('dsdsdsd',newBind('katihar'));
 
-Function.prototype.customBind=function (context,...agrs){
-    context = context || globalThis;
-    const funKey = Symbol('fn');
+// Function.prototype.customBind=function (context,...agrs){
+//     context = context || globalThis;
+//     const funKey = Symbol('fn');
 
-    context[funKey]=this;
+//     context[funKey]=this;
     
-    return function(...newArgs){
-        context[funKey](...agrs,...newArgs)
+//     return function(...newArgs){
+//         context[funKey](...agrs,...newArgs)
+//     }
+// }
+// const customdsplay =display.customBind(user,'katihar')
+// console.log(customdsplay(854105))
+//---------------------------------------------------------------------
+
+// let x=10;
+
+// function change(a){
+//     a=100
+// }
+// change(x);
+// console.log(x) 
+// //Js is call by value because the change in the value of variable inside a function will not affect the outer variable.
+
+// const user1 ={
+//     name:'Ramessh lal',
+// }
+// function changeObj(obj){
+//     obj.name='Vikassh lal'
+// }
+// changeObj(user1);
+// console.log(user1.name);
+
+//----------------------------------------------------------------------------------
+const obj1={
+    name:'Ramessh lal',
+    address:{
+      village:'Katihar',
+      pin:854105
     }
 }
-const customdsplay =display.customBind(user,'katihar')
-console.log(customdsplay(854105))
+// const obj2 =obj1;
+//shallow copy
+// const obj3 ={...obj1}
+// obj2.name='Vikassh lal'
+// obj3.name='Anil sharma'
+// obj3.address.village='Nepal'
+// console.log('onject2',obj2)
+// console.log('object1',obj1)
+// console.log('object3',obj3)
+
+// Deep copy is the way to create copy in which at all level the object copied . if we change the value of nested object it will not change the original object
+// const obj4 = structuredClone(obj1)
+// console.log('obj4',obj4)
+// obj4.name='Narayan lal'
+// obj4.address.village='Darbhanga'
+// obj4.address.pin=854109
+// console.log('obj1',obj1)
+// console.log('obj4',obj4)
+// custom deep clone
+// let a='ramessh lal';
+// let arr =[1,2,3,4,['ramessh lal','vikssh lal'],obj1]
+// function deepClone(obj){
+//     if(obj===null || typeof obj !=='object'){
+//         return obj
+//     }
+//     if(Array.isArray(obj)){
+//         return obj.map((item)=>deepClone(item))
+//     }
+//     const colnedObj ={};
+//     for(let key in obj){
+//         if(obj.hasOwnProperty(key)){
+//             colnedObj[key]=deepClone(obj[key])
+//         }
+//     }
+//     return colnedObj
+// }
+// const arr1 =deepClone(arr)
+// arr1.push('Narayan lal')
+// arr1[4][0]='Anil rai'
+// arr1[5].name='Vikash lal'
+// arr1[5].address.village='Darbhanga'
+// console.log(arr1)
+// console.log(arr)
+// const deepCopy =deepClone(obj1)
+// deepCopy.name='Vikassh lal'
+// deepCopy.address.village='Darbhanga'
+// console.log(deepCopy)
+// console.log(obj1)
 
