@@ -702,3 +702,5 @@ const arr =[100,200,300,400,500]
 // }
 // const arrayFilterCustom = arr.customFilter((value,index)=>value>200);
 // console.log(arrayFilterCustom)
+
+//--------------------------------------------------------------------------------
