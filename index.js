@@ -647,3 +647,58 @@ const obj1={
 // console.log(deepCopy)
 // console.log(obj1)
 
+// for(let key in obj1){
+//     console.log(key)
+//     console.log(obj1.hasOwnProperty(key))
+//     console.log(obj1.hasOwnProperty(obj1.toString()))
+//     console.log(Object.keys(obj1.toString()))
+// }
+//----------------------------------------------------------------------------------
+//polyfill for map ,forEach,reduce, filter,
+
+const arr =[100,200,300,400,500]
+
+//ForEach is a array method which itterates on each element of the array and return undefined.....
+// const returnForEach = arr.forEach((item,index)=>console.log(item,index))
+
+// Array.prototype.customForEach= function(callback){
+//     for(let i =0;i<this.length;i++){
+//         callback(this[i],i,arr)
+//     }
+// }
+// arr.customForEach((value,index)=>console.log(value,index))
+//----------------------------------------------------------------------------------
+
+//map method itteraes on each element of the arraya and return new array.
+// const mapArray = arr.map((value,index)=>{
+//     return value*2
+// })
+// // console.log(mapArray)
+// Array.prototype.customMap=function(callback){
+//     const result =[];
+//     for(let i=0;i<this.length;i++){
+//         result.push(callback(this[i]));
+//     }
+//     return result;
+// }
+
+// const arrMap=arr.customMap((value,index)=>value*2)
+// console.log(arrMap)
+//-----------------------------------------------------------------------------
+//filter method :=> if the return value is truthy keep the original element...
+
+// const arrFilter=arr.filter((value)=>{
+//     return value>300;
+// })
+// console.log(arrFilter)
+// Array.prototype.customFilter = function(callback){
+//     const result = [];
+//     for(let i=0;i<this.length;i++){
+//         if(callback(this[i],i,this)){
+//             result.push(this[i])
+//         }
+//     }
+//     return result
+// }
+// const arrayFilterCustom = arr.customFilter((value,index)=>value>200);
+// console.log(arrayFilterCustom)
