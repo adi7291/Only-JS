@@ -1,7 +1,7 @@
 /** find the longest string in the sentnce..
  *
  */
-const str = "Hey learning Javascript. it is synchronous.";
+// const str = "Hey learning Javascript. it is synchronous.";
 //-------------------------------------------------------------------------------
 // function findLongestString(str) {
 //     if(str.trim().length===0) return false;
@@ -29,7 +29,7 @@ const str = "Hey learning Javascript. it is synchronous.";
 //     }
 //     return words[0];
 // }
-console.log(findLongestWord(str));
+// console.log(findLongestWord(str));
 // "My initial approach uses two loops, but because I break the outer loop after its first
 //  iteration, the actual time complexity is O(n), not O(n²). However, I'm unnecessarily
 // modifying the array by swapping elements. We can optimize the implementation by maintaining
@@ -54,3 +54,29 @@ console.log(findLongestWord(str));
 //   console.log(words);
 //   return words[0];
 // }
+//===========================================================================================
+//## create a function which generate hash tag for given input string . if the length of the string is greater then 280 or it is 0 that string will be neglected. str='my name ramessh lal' output====> '#MyNameIsRamesshLal'
+const str = "My name is Ramessh lal i am from katihar.";
+
+// function generateHashString(str) {
+//   if (str.length > 280 || str.trim().length === 0) return false;
+//   const words = str.split(" ");
+//   //   console.log(words);
+//   let hashedWord = "#";
+//   for (let i = 0; i < words.length; i++) {
+//     hashedWord = hashedWord + words[i].at(0).toUpperCase() + words[i].slice(1);
+//   }
+//   return hashedWord;
+// }
+console.log(generateHashString(str));
+
+function generateHashString(str) {
+  if (str.length > 280 || str.trim().length === 0) return false;
+  const words = str
+    .split(" ")
+    .map((currentWord) =>
+      currentWord.replace(currentWord[0], currentWord[0].toUpperCase())
+    );
+  const hashedString = `#${words.join("")}`;
+  console.log(hashedString);
+}
