@@ -38,7 +38,7 @@ function display(city,pin){
 // console.log(user.greet());
 // console.log(display.call(user,'katihar'))
 Function.prototype.customCall=function(context,...args){
-    constext= context || globalThis;
+    context= context || globalThis;
     const funKey = Symbol('fn');
     context[funKey]=this;
     const result = args?context[funKey](...args):context[funKey]()

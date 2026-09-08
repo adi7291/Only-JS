@@ -1,3 +1,22 @@
+console.log("Start");
+ 
+const promise = new Promise((resolve) => {
+  console.log("Promise");
+  resolve();
+});
+ 
+promise.then(() => {
+  console.log("Then");
+});
+ 
+setTimeout(() => {
+  console.log("Timeout");
+}, 0);
+ 
+console.log("End");
+
+
+
 //JAva script is a single threaded language it executes all of the synchronous code one after another line by line
 // if it encounters any asynchronous code it iexecutes it later or after the execution of synchronous code.
 
